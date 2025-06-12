@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramkumar M - Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #fff3e0);
+            color: #1a1a1a;
+            overflow-x: hidden;
+            margin: 0;
+        }
+        .navbar {
+            background-color: #0d2538;
+            padding: 15px 0;
+            transition: background-color 0.4s ease, transform 0.3s ease;
+        }
+        .navbar.scrolled {
+            background-color: #071520;
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        .navbar-brand, .nav-link {
+            color: #ffd700 !important;
+            font-weight: 500;
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -8px;
+            left: 0;
+            background: linear-gradient(to right, #ff6f00, #ffd700);
+            transition: width 0.4s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .hero {
+            background: url('https://images.unsplash.com/photo-1557682250-33bd709cbe85?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 150px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4));
+        }
+        .hero h1 {
+            animation: bounceIn 1.2s ease-out;
+            position: relative;
+            font-weight: 700;
+            font-size: 3.5rem;
+        }
+        .hero h3 {
+            animation: fadeInUp 1.2s ease-out 0.3s;
+            animation-fill-mode: backwards;
+            position: relative;
+        }
+        .hero p {
+            animation: fadeIn 1.2s ease-out 0.6s;
+            animation-fill-mode: backwards;
+            position: relative;
+        }
+        .section {
+            padding: 100px 0;
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.85);
+        }
+        .section.bg-light {
+            background: url('https://images.unsplash.com/photo-1557682257-2f9c37a3a5f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .section.bg-light::before {
+            background: rgba(224,247,250,0.9);
+        }
+        .card {
+            border: none;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            background: linear-gradient(135deg, #ffffff, #f5f5f5);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/cubes.png');
+            opacity: 0.1;
+        }
+        .card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+        }
+        .skill-item {
+            background: linear-gradient(45deg, #ff6f00, #ff8f00);
+            color: white;
+            padding: 12px 24px;
+            margin: 8px;
+            border-radius: 25px;
+            display: inline-block;
+            transition: transform 0.3s ease, background 0.3s ease;
+            font-weight: 500;
+        }
+        .skill-item:hover {
+            transform: scale(1.15) rotate(2deg);
+            background: linear-gradient(45deg, #e65100, #f57c00);
+        }
+        .contact-info a {
+            color: #ff6f00;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .contact-info a:hover {
+            color: #e65100;
+            transform: translateX(5px);
+        }
+        .btn-animated {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            background: #ffd700;
+            color: #0d2538;
+            font-weight: 600;
+            border-radius: 30px;
+            padding: 12px 30px;
+            transition: all 0.3s ease;
+        }
+        .btn-animated::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6f00, #ffd700);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+        .btn-animated:hover::before {
+            left: 0;
+        }
+        .btn-animated:hover {
+            color: #fff;
+            transform: scale(1.05);
+        }
+        footer {
+            background: #0d2538;
+            color: #ffd700;
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #ff6f00, #ffd700);
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 0;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .section {
+                padding: 60px 0;
+            }
+            .card {
+                border-radius: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Ramkumar M</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1 data-aos="zoom-in">Ramkumar M</h1>
+            <h3 data-aos="zoom-in" data-aos-delay="200">Full Stack Web Developer</h3>
+            <p data-aos="fade-up" data-aos-delay="400">Passionate about building dynamic, responsive, and database-driven web applications.</p>
+            <a href="#contact" class="btn btn-animated mt-4" data-aos="bounce" data-aos-delay="600">Get in Touch</a>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-down">About Me</h2>
+            <p class="lead text-center" data-aos="fade-up" data-aos-delay="200">Passionate and detail-oriented Full Stack Web Developer with hands-on experience in both frontend and backend technologies including React JS, Django, HTML, CSS, Bootstrap, and MySQL. Proficient in using Python-based frameworks like Django for backend development, and React JS with Material UI for intuitive frontend designs. A quick learner with a strong foundation in computer science and a commitment to continuous learning and innovation.</p>
+        </div>
+    </section>
+
+    <section id="skills" class="section bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-down">Technical Skills</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4" data-aos="flip-left" data-aos-delay="0">
+                    <h5>Frontend</h5>
+                    <div class="skill-item">React JS</div>
+                    <div class="skill-item">HTML</div>
+                    <div class="skill-item">CSS</div>
+                    <div class="skill-item">Bootstrap 5</div>
+                    <div class="skill-item">Material UI</div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="flip-up" data-aos-delay="200">
+                    <h5>Backend</h5>
+                    <div class="skill-item">Python</div>
+                    <div class="skill-item">Django</div>
+                    <!-- <div class="skill-item">Flask</div> -->
+                </div>
+                <div class="col-md-4 mb-4" data-aos="flip-right" data-aos-delay="400">
+                    <h5>Database & Tools</h5>
+                    <div class="skill-item">MySQL</div>
+                    <!-- <div class="skill-item">MongoDB</div> -->
+                    <div class="skill-item">VS Code</div>
+                    <div class="skill-item">PyCharm</div>
+                    <div class="skill-item">Git</div>
+                    <div class="skill-item">GitHub</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="section">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-down">Education</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4" data-aos="flip-up" data-aos-delay="0">
+                    <div class="card p-4">
+                        <h5>M.Sc. Computer Science</h5>
+                        <p>Kamarajar Government Arts College, Surandai<br>2022-2024<br>69%</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="flip-up" data-aos-delay="200">
+                    <div class="card p-4">
+                        <h5>B.Sc. Computer Science</h5>
+                        <p>CSI Jayaraj Annapackiam College, Nallur<br>2019-2022<br>80.04%</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="flip-up" data-aos-delay="400">
+                    <div class="card p-4">
+                        <h5>HSC</h5>
+                        <p>Baren Bruck Higher Secondary School, Bungalow Surandai<br>2019<br>61.83%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-down">Projects</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4" data-aos="fade-right" data-aos-delay="0">
+                    <div class="card p-4">
+                        <h5>Hostel Attendance Management System</h5>
+                        <p><strong>Role:</strong> Frontend Developer<br>
+                           <strong>Technologies:</strong> HTML, CSS, Bootstrap, React JS, Material UI, Node JS, MongoDB</p>
+                        <p>Developed a user-friendly interface for managing attendance records of hostel residents. Responsibilities included building responsive UI with React JS, integrating APIs with Axios, ensuring cross-browser compatibility, and maintaining documentation.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4" data-aos="fade-left" data-aos-delay="200">
+                    <div class="card p-4">
+                        <h5>Clinic Management System</h5>
+                        <p><strong>Role:</strong> Full Stack Developer<br>
+                           <strong>Technologies:</strong> Python, Django, React JS, HTML, CSS, Bootstrap, MySQL</p>
+                        <p>Built a role-based clinic management system with modules for Admin, Doctor, Pharmacist, and more. Designed database schema, implemented CRUD operations, created responsive dashboards with React JS, and integrated REST APIs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-down">Experience</h2>
+            <div class="card p-4" data-aos="zoom-in">
+                <h5>React JS Developer - LABGLO Technologies LLP</h5>
+                <p><strong>Duration:</strong> 1 Month Internship & 2 Months Project</p>
+                <ul>
+                    <li>Designed and implemented dynamic components using React JS and Material UI</li>
+                    <li>Integrated frontend with backend APIs</li>
+                    <li>Collaborated with backend developers and designers for seamless UI/UX</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-down">Contact Me</h2>
+            <div class="row">
+                <div class="col-md-6 mx-auto text-center contact-info" data-aos="fade-up" data-aos-delay="200">
+                    <p><strong>Phone:</strong> <a href="tel:+918056344279">8056344279</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:ramkumar.mdev@gmail.com">ramkumar.mdev@gmail.com</a></p>
+                    <p><strong>Address:</strong> Tenkasi-627859, India</p>
+                    <p><strong>Languages:</strong> Tamil, English</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p data-aos="fade-up">© 2023 Ramkumar M. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-out-back',
+            once: true
+        });
+
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        document.querySelectorAll('.nav-link').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
